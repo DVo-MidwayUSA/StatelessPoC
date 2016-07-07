@@ -14,11 +14,7 @@
 
         AddToCartPlugin.prototype.init = function () {
 
-            this.hub = $.connection.cartHub;
-
             this.renderButton();
-
-            this.bindButton();
 
         };
 
@@ -38,25 +34,6 @@
                         </div>`;
 
             this.$el.replaceWith(html);
-
-        };
-
-        AddToCartPlugin.prototype.bindButton = function () {
-
-            var self = this;
-
-            console.log(this.hub);
-
-            $('[data-addToCart]').on('click', function (e) {
-
-                e.preventDefault();
-
-                $.connection.hub.start().done(function () {
-                    self.hub.server.add('a', 2, 'a');
-
-                });
-
-            });
 
         };
 

@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="jquery-1.6.4.min.js" />
     <Content Include="packages.config" />
     <Content Include="jquery.mini-cart.js" />
     <None Include="Web.Debug.config">

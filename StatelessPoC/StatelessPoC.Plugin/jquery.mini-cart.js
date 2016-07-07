@@ -20,14 +20,6 @@
 
 		};
 
-		MiniCart.prototype.registerHubs = function () {
-
-			var hub = $.connection.cartHub;
-
-			hub.client.updateCartContents = (count) => this.updateCartContents(count);
-
-		};
-
 		MiniCart.prototype.getToken = function () {
 
 			var localToken = localStorage.getItem('token');
@@ -67,12 +59,6 @@
 				console.log('hi');
 
 			});
-
-		};
-
-		MiniCart.prototype.updateCartContents = function (count) {
-
-			$('[data-miniCart]').text(`Checkout ${count}`);
 
 		};
 

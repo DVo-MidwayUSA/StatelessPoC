@@ -77,8 +77,7 @@
     <link href="http://blackhawk.com/CMSPages/GetResource.ashx?_webparts=677" type="text/css" rel="stylesheet" />
 
     <style>
-
-        .MainNav ul.MainCMSListMenuUL>li>a, .MainNav ul.MainCMSListMenuUL>li>span {
+        .MainNav ul.MainCMSListMenuUL > li > a, .MainNav ul.MainCMSListMenuUL > li > span {
             font-size: .8em;
         }
 
@@ -93,7 +92,6 @@
         .ProductVariantButtons a {
             font-size: 11px;
         }
-
     </style>
 </head>
 <body class="LTR Safari Chrome Safari51 Chrome51 ENUS ContentBody">
@@ -1854,6 +1852,29 @@
 
                 $('[data-miniCart]').miniCart();
                 $('[data-addToCart]').addToCart(123456);
+
+                $.connection.hub.url = 'http://localhost:57725/signalr';
+
+                var cartHub = $.connection.cartHub;
+
+                cartHub.client.updateCartContents = function (count) {
+
+                    $('[data-miniCart]').text(`Checkout (${count})`);
+
+                };
+
+                $.connection.hub.start().done(function () {
+
+                    $('[data-addToCart]').on('click', function (e) {
+
+                        console.log('clicked');
+
+                        cartHub.server.add('a', 1, '1');
+
+                    });
+
+                });
+
 
             }(jQuery));
 

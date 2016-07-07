@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Owin;
 using System.Web.Http;
 
@@ -12,16 +14,22 @@ namespace StatelessPoC.Shop
         {
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
 
-            var config = new HttpConfiguration();
-            config.Routes.MapHttpRoute(
+            app.Map("/signalr", map =>
+            {
+                map.UseCors(CorsOptions.AllowAll);
+                var hubConfig = new HubConfiguration { };
+                map.RunSignalR(hubConfig);
+            });
+
+            var httpConfig = new HttpConfiguration();
+            httpConfig.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            app.UseWebApi(config);
+            app.UseWebApi(httpConfig);
 
-            app.MapSignalR();
         }
     }
 }

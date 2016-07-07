@@ -7,7 +7,7 @@ namespace StatelessPoC.Shop.Hubs
         public void Add(string sku, int quantity, string token)
         {
             quantity = 1;
-            Clients.Caller.updateCartContents(quantity);
+            Clients.All.updateCartContents(quantity);
         }
     }
 }
