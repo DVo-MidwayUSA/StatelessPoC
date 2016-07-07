@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="jquery.mini-cart.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -75,6 +76,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="index.html" />
+    <Content Include="jquery.add-to-cart.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
