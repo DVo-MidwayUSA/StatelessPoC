@@ -49,7 +49,7 @@
 
         for (var i = 0; i < cartItems.length; i++) {
 
-            $cartList.append(`<tr data-cart-item="${cartItems[i].Id}"><td>#${cartItems[i].Sku}</td><td><input type="number" value="${cartItems[i].Quantity}" /></td><td><button data-delete>X</button></td></tr>`);
+            $cartList.append(`<tr data-cart-item="${cartItems[i].Id}"><td>#${cartItems[i].Sku}</td><td><input type="number" value="${cartItems[i].Quantity}" /></td><td><button class="glyphicon glyphicon-ok"></button><button data-delete class="glyphicon glyphicon-remove"></button></td></tr>`);
         }
 
     };
