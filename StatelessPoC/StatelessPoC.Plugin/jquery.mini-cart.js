@@ -16,14 +16,33 @@
 
 			this.renderButton();
 
+			this.bindButton();
+
+		};
+
+		MiniCart.prototype.registerHubs = function () {
+
+			var hub = $.connection.cartHub;
+
+			hub.client.updateCartContents = (count) => this.updateCartContents(count);
+
 		};
 
 		MiniCart.prototype.getToken = function () {
 
+			var localToken = localStorage.getItem('token');
+
+			if (localToken != null)
+			{
+				return;
+			}
+
 			$.ajax({
 				url: 'http://localhost:57725/api/token/',
 				success: function (data) {
-					console.log(data);
+
+					localStorage.setItem('token', data.Token);
+
 				}
 			});
 
@@ -36,6 +55,24 @@
 							Checkout (0)</button>`;
 
 			this.$el.replaceWith(html);
+
+		};
+
+		MiniCart.prototype.bindButton = function () {
+
+			$('[data-miniCart]').on('click', function (e) {
+
+				e.preventDefault();
+
+				console.log('hi');
+
+			});
+
+		};
+
+		MiniCart.prototype.updateCartContents = function (count) {
+
+			$('[data-miniCart]').text(`Checkout ${count}`);
 
 		};
 
