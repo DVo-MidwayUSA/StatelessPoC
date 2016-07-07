@@ -70,6 +70,7 @@
     <Content Include="core\musa.marketplace.js" />
     <Content Include="packages.config" />
     <Content Include="plugins\jquery.mini-cart.js" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

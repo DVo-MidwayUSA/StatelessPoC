@@ -52,9 +52,9 @@
         }
 
         function pulsate() {
-            if (i >= 2) return;
-            $miniCart.animate({ opacity: 0.2 }, 500, 'linear')
-                .animate({ opacity: 1 }, 500, 'linear', pulsate);
+            if (i >= 1) return;
+            $miniCart.animate({ opacity: 0.2 }, 200, 'linear')
+                .animate({ opacity: 1 }, 200, 'linear', pulsate);
             i++;
         }
 

@@ -15,7 +15,7 @@ namespace StatelessPoC.Shop.Hubs
                 if (cart != null)
                 {
                     var totalItems = cart.CartItems.Sum(x => x.Quantity);
-                    Clients.Caller.updateCartContents(totalItems, false);
+                    Clients.All.updateCartContents(totalItems, false);
                     return;
                 }
 
@@ -36,7 +36,23 @@ namespace StatelessPoC.Shop.Hubs
                 ctx.SubmitChanges();
 
                 var totalItems = cart.CartItems.Sum(x => x.Quantity);
-                Clients.Caller.updateCartContents(totalItems, true);
+                Clients.All.updateCartContents(totalItems, true);
+                Clients.All.displayCart(cart.CartItems.Select(x => new { x.Id, x.Sku, x.Quantity }));
+            }
+        }
+
+        public void DeleteCartItem(int id)
+        {
+            using (var ctx = new DataClassesDataContext())
+            {
+                var cartItem = ctx.CartItems.Single(x => x.Id == id);
+                var cart = cartItem.Cart;
+                ctx.CartItems.DeleteOnSubmit(cartItem);
+                ctx.SubmitChanges();
+
+                var totalItems = cart.CartItems.Sum(x => x.Quantity);
+                Clients.All.updateCartContents(totalItems, true);
+                Clients.All.displayCart(cart.CartItems.Select(x => new { x.Id, x.Sku, x.Quantity }));
             }
         }
 
@@ -45,7 +61,7 @@ namespace StatelessPoC.Shop.Hubs
             using (var ctx = new DataClassesDataContext())
             {
                 var cart = ctx.Carts.Single(x => x.Token == token);
-                Clients.Caller.displayCart(cart.CartItems.Select(x => new { x.Sku, x.Quantity}));
+                Clients.All.displayCart(cart.CartItems.Select(x => new { x.Id, x.Sku, x.Quantity}));
             }
         }
     }

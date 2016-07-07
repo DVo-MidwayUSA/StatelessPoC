@@ -10,7 +10,24 @@
 
         this.init();
 
-        $.connection.hub.start().done(() => this.getCart());
+        var self = this;
+
+        $.connection.hub.start().done(function() {
+
+            self.getCart();
+
+            $('[data-cart-list]')
+                .on('click',
+                    '[data-delete]',
+                    function() {
+
+                        var cartItemId = $(this).parents('tr').data('cart-item');
+
+                        self.hub.server.deleteCartItem(cartItemId);
+
+                    });
+
+        });
     }
 
     App.prototype.init = function() {
@@ -21,9 +38,18 @@
 
     App.prototype.displayCart = function($, cartItems) {
 
+        var $cartList = $('[data-cart-list]').empty();
+
+        if (cartItems.length === 0) {
+
+            $cartList.append('<tr><td colspan="3">Cart is empty.</td></tr>')
+
+            return;
+        }
+
         for (var i = 0; i < cartItems.length; i++) {
 
-            $('[data-cart-list]').append(`<tr><td>${cartItems[i].Sku}</td><td>${cartItems[i].Quantity}</td></tr>`);
+            $cartList.append(`<tr data-cart-item="${cartItems[i].Id}"><td>#${cartItems[i].Sku}</td><td><input type="number" value="${cartItems[i].Quantity}" /></td><td><button data-delete>X</button></td></tr>`);
         }
 
     };
