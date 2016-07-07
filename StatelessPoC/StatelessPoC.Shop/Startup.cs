@@ -22,6 +22,8 @@ namespace StatelessPoC.Shop
             });
 
             var httpConfig = new HttpConfiguration();
+
+            httpConfig.EnableCors();
             httpConfig.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -29,7 +31,6 @@ namespace StatelessPoC.Shop
             );
 
             app.UseWebApi(httpConfig);
-
         }
     }
 }

@@ -2,6 +2,8 @@
 
     var AddToCartPlugin = (function () {
 
+        'use strict';
+
         function AddToCartPlugin(element, sku) {
 
             this.$el = $(element);
@@ -22,7 +24,7 @@
 
             var html = `<div>
                             <a
-                                data-addToCart
+                                data-add-to-cart="${this.sku}"
                                 style="cursor: pointer; line-height: 18px; float: left; display: block; width: 100%; margin: 0 0 10px 0; ">
                                 Add to Cart</a>
                             <input

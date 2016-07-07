@@ -66,9 +66,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="jquery-1.6.4.min.js" />
+    <Content Include="lib\jquery-1.6.4.min.js" />
+    <Content Include="core\musa.marketplace.js" />
     <Content Include="packages.config" />
-    <Content Include="jquery.mini-cart.js" />
+    <Content Include="plugins\jquery.mini-cart.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -78,8 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <Content Include="jquery.add-to-cart.js" />
-    <Content Include="jquery.signalR-2.2.0.min.js" />
+    <Content Include="plugins\jquery.add-to-cart.js" />
+    <Content Include="lib\jquery.signalR-2.2.0.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
